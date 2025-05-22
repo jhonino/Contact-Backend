@@ -1,11 +1,13 @@
 package pe.dhexsoft.contactos.service;
 
 import jakarta.persistence.EntityNotFoundException;
+import org.springframework.stereotype.Service;
 import pe.dhexsoft.contactos.entity.Contact;
 import pe.dhexsoft.contactos.repository.ContactRepository;
 
 import java.util.List;
 
+@Service
 public class ContactServiceImpl implements ContactService{
 
     //----Inyeccion de dependencia por constructor---------------
