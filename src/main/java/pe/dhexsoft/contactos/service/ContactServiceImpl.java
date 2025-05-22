@@ -1,5 +1,6 @@
 package pe.dhexsoft.contactos.service;
 
+import jakarta.persistence.EntityNotFoundException;
 import pe.dhexsoft.contactos.entity.Contact;
 import pe.dhexsoft.contactos.repository.ContactRepository;
 
@@ -22,21 +23,25 @@ public class ContactServiceImpl implements ContactService{
 
     @Override
     public List<Contact> findAll() {
-        return List.of();
+        return contactRepository.findAll();
     }
 
     @Override
     public Contact findById(Long id) {
-        return null;
+        return contactRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("no existe el id" + id));
     }
 
     @Override
     public Contact update(Contact contact, Long id) {
-        return null;
+        Contact buscado = findById(id);
+        buscado.setName(contact.getName());
+        buscado.setEmail(contact.getEmail());
+        return save(contact);
     }
 
     @Override
     public void delete(Long id) {
-
+        findById(id);
+        contactRepository.deleteById(id);
     }
 }
