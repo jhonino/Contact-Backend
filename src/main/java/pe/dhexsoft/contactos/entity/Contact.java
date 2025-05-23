@@ -1,10 +1,8 @@
 package pe.dhexsoft.contactos.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.*;
+import org.springframework.data.annotation.CreatedDate;
 
 import java.time.LocalDateTime;
 
@@ -33,7 +31,9 @@ public class Contact {
     private String name;
     @NonNull
     private String email;
-    @NonNull
+
+    @CreatedDate
+    @Column(updatable = false)
     private LocalDateTime createdAt;
 
     public Long getId() {

@@ -2,12 +2,11 @@ package pe.dhexsoft.contactos.controller;
 
 import lombok.AllArgsConstructor;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import pe.dhexsoft.contactos.entity.Contact;
 import pe.dhexsoft.contactos.service.ContactService;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/api/contact")
@@ -22,9 +21,30 @@ public class ContactController {
     }
 
 
+    // metodos, end points------------------------
     @PostMapping
     public Contact guardar(@RequestBody Contact contact){
         return contactService.save(contact);
+    }
+
+    @GetMapping
+    public List<Contact> listar(){
+        return contactService.findAll();
+    }
+
+    @GetMapping("/{id}")
+    public Contact listarXid(@PathVariable Long id){
+        return contactService.findById(id);
+    }
+
+    @PutMapping("/{id}")
+    public Contact modificar(@PathVariable Long id, @RequestBody Contact contact){
+        return contactService.update(contact, id);
+    }
+
+    @DeleteMapping("/{id}")
+    public void eliminar(@PathVariable Long id){
+        contactService.delete(id);
     }
 
 }

@@ -38,7 +38,7 @@ public class ContactServiceImpl implements ContactService{
         Contact buscado = findById(id);
         buscado.setName(contact.getName());
         buscado.setEmail(contact.getEmail());
-        return save(contact);
+        return contactRepository.save(buscado);
     }
 
     @Override
