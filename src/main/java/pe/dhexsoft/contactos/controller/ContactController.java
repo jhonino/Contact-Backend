@@ -2,6 +2,7 @@ package pe.dhexsoft.contactos.controller;
 
 import lombok.AllArgsConstructor;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import pe.dhexsoft.contactos.entity.Contact;
 import pe.dhexsoft.contactos.service.ContactService;
@@ -43,8 +44,9 @@ public class ContactController {
     }
 
     @DeleteMapping("/{id}")
-    public void eliminar(@PathVariable Long id){
+    public ResponseEntity<Void> eliminar(@PathVariable Long id){
         contactService.delete(id);
+        return ResponseEntity.noContent().build();
     }
 
 }
